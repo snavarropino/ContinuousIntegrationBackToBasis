@@ -1,0 +1,87 @@
+{
+  "configVersion": 1,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/favicon.ico",
+        "/index.html"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/CNAME",
+        "/assets/config/config.json",
+        "/assets/css/loading.css",
+        "/assets/css/reset.css",
+        "/assets/googled41787c6aae2151b.html",
+        "/assets/i18n/en.json",
+        "/assets/i18n/es.json",
+        "/assets/i18n/eu.json",
+        "/assets/i18n/pt-br.json",
+        "/assets/i18n/zh-cn.json",
+        "/assets/i18n/zh-hk.json",
+        "/assets/images/404.gif",
+        "/assets/images/angular.svg",
+        "/assets/images/github-circle-white-transparent.svg",
+        "/assets/images/heroes/default.png",
+        "/assets/images/loading-hero.jpg",
+        "/assets/images/logo.svg",
+        "/assets/images/og.jpg",
+        "/assets/js/modernizr.js",
+        "/assets/sitemap.xml"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/CNAME": "9c4f0683cedd3eacb49584354ccc95dbb439ca48",
+    "/assets/config/config.json": "46b208953ec2653977120589237ce81584ef20a6",
+    "/assets/css/loading.css": "1c0da75bc91e8ee682f6308138b2ffaf44938ced",
+    "/assets/css/reset.css": "9c155a53a3567f21ebf69aeeafc01fea91a5fd81",
+    "/assets/googled41787c6aae2151b.html": "a9fc98624735e71879021f130b38cf19491bb7c5",
+    "/assets/i18n/en.json": "2d8a7315a9d19d0911b71ed56714a6bf35496c6b",
+    "/assets/i18n/es.json": "1d4c98d1a52310d95a10062fc237211e30eb3879",
+    "/assets/i18n/eu.json": "d0d7f1dea46be820651aabe6796b4830035e8f1d",
+    "/assets/i18n/pt-br.json": "edcd9f9922abca1a340eca2be55826dfef2b8d91",
+    "/assets/i18n/zh-cn.json": "92d781bb0752ba118052f81b699bd2d30769d5eb",
+    "/assets/i18n/zh-hk.json": "e3d7e6c0c4a44b85a764dd0fbd10d1b91d75deea",
+    "/assets/images/404.gif": "5884765f20002934d84bbe9fb8cca3a46dc1326f",
+    "/assets/images/angular.svg": "7da80dad176d6c831fc69d1ee3d0f7350e6b64d3",
+    "/assets/images/github-circle-white-transparent.svg": "5b2d47c764e41b72fcdc1105c2eece479bd40081",
+    "/assets/images/heroes/default.png": "4ba5c23dab24b6cb77cd8794a4b64b6e54998c31",
+    "/assets/images/loading-hero.jpg": "b1fe36d8447142ba33dac88f8e214abb1333d135",
+    "/assets/images/logo.svg": "97b5252106f5c20832dd0a637c2a26a4f409571d",
+    "/assets/images/og.jpg": "c7e89b0f813374fa9787faf4a862d7e15f7f56f6",
+    "/assets/js/modernizr.js": "bd2c046e84848d884d13ebabe0bb13976b66fb91",
+    "/assets/sitemap.xml": "a50947127a0a747c8c1e87bc0c9317240796c87e",
+    "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/index.html": "8b17704e332170f9b52821cdb55af5e592bbe5c2"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
