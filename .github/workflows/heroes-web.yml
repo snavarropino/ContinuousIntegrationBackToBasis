@@ -1,0 +1,44 @@
+name: heroes-web
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "src/front/**"
+      - ".github/workflows/heroes-web.yml"
+
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "src/front/**"
+      - ".github/workflows/heroes-web.yml"
+
+env:
+  NODE_VERSION: '10.x'    # set this to the node version to use
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./src/front
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: npm install, build, and test
+      run: |
+        # Install dependencies and build
+        npm install
+        npm run build:prod
+      working-directory: ${{ env.working-directory }}
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: web-artifact
+        path: ./src/front/dist

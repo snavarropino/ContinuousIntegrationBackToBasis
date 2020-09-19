@@ -1,0 +1,44 @@
+name: heroes-api
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "src/back/**"
+      - ".github/workflows/heroes-api.yml"    
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "src/back/**"
+      - ".github/workflows/heroes-api.yml"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+
+    - name: Install dependencies
+      run: dotnet restore src/back/Api/Api.csproj
+
+    - name: Build
+      run: dotnet build src/back/Api/Api.csproj --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test src/back/Api.Test/Api.Test.csproj --no-restore --verbosity normal
+
+    - name: Publish
+      run:  dotnet publish src/back/Api/Api.csproj --configuration Release -o dotnetcoreapiapp 
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: api-artifact
+        path: dotnetcoreapiapp
