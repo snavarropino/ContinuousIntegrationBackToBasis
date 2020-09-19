@@ -32,10 +32,10 @@ jobs:
       run: dotnet build src/back/heroes.sln --configuration Release --no-restore
 
     - name: Unit Tests
-      run: dotnet test src/back/Api.Test/Api.Test.csproj --no-build --verbosity normal
+      run: dotnet test src/back/Api.Test/Api.Test.csproj --no-restore --verbosity normal
 
     - name: Functional Tests
-      run: dotnet test src/back/Api.FunctionalTest/Api.FunctionalTest.csproj --no-build --verbosity normal
+      run: dotnet test src/back/Api.FunctionalTest/Api.FunctionalTest.csproj --no-restore --verbosity normal
 
     - name: Publish
       run:  dotnet publish src/back/Api/Api.csproj --no-restore --configuration Release -o dotnetcoreapiapp 
