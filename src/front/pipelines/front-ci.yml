@@ -86,38 +86,3 @@ steps:
   displayName: 'Publish Artifact: drop'
   inputs:
     PathtoPublish: src/front/dist
-
-
-- task: DeleteFiles@1
-  displayName: 'Clean Publish Folder'
-  inputs:
-    SourceFolder: '$(build.artifactstagingdirectory)'
-
-    Contents: '**'
-
-
-- task: DeleteFiles@1
-  displayName: 'Clean build results'
-  inputs:
-    SourceFolder: src/front
-
-    Contents: |
-     node_modules/**
-     dist/**
-
-
-- task: CopyFiles@2
-  displayName: 'Copy e2e tests'
-  inputs:
-    SourceFolder: src/front
-
-    TargetFolder: '$(build.artifactstagingdirectory)'
-
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: e2e tests drop'
-  inputs:
-    PathtoPublish: src/front
-
-    ArtifactName: e2e
-
