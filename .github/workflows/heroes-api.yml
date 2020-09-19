@@ -29,7 +29,7 @@ jobs:
       run: dotnet restore src/back/heroes.sln
 
     - name: Build
-      run: dotnet build src/back/**/*.csproj --configuration Release --no-restore
+      run: dotnet build src/back/heroes.sln --configuration Release --no-restore
 
     - name: Test
       run: dotnet test src/back/**/*.*Test.csproj --no-build --verbosity normal
