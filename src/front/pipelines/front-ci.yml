@@ -23,7 +23,7 @@ steps:
 - task: Npm@1
   displayName: 'npm install'
   inputs:
-    workingDir: front
+    workingDir: src/front
 
     verbose: false
 
@@ -33,7 +33,7 @@ steps:
   inputs:
     command: custom
 
-    workingDir: front
+    workingDir: src/front
 
     verbose: false
 
@@ -45,7 +45,7 @@ steps:
   inputs:
     command: custom
 
-    workingDir: front
+    workingDir: src/front
 
     verbose: false
 
@@ -57,7 +57,7 @@ steps:
   inputs:
     command: custom
 
-    workingDir: front
+    workingDir: src/front
 
     verbose: false
 
@@ -75,7 +75,7 @@ steps:
   inputs:
     command: custom
 
-    workingDir: front
+    workingDir: src/front
 
     verbose: false
 
@@ -85,7 +85,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
-    PathtoPublish: front/dist
+    PathtoPublish: src/front/dist
 
 
 - task: DeleteFiles@1
@@ -99,7 +99,7 @@ steps:
 - task: DeleteFiles@1
   displayName: 'Clean build results'
   inputs:
-    SourceFolder: front
+    SourceFolder: src/front
 
     Contents: |
      node_modules/**
@@ -109,7 +109,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy e2e tests'
   inputs:
-    SourceFolder: front
+    SourceFolder: src/front
 
     TargetFolder: '$(build.artifactstagingdirectory)'
 
@@ -117,7 +117,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: e2e tests drop'
   inputs:
-    PathtoPublish: front
+    PathtoPublish: src/front
 
     ArtifactName: e2e
 
