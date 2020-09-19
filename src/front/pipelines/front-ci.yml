@@ -1,0 +1,123 @@
+resources:
+- repo: self
+queue:
+  name: Hosted VS2017
+  demands: npm
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - /src/front
+
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node 8.11.0'
+  inputs:
+    versionSpec: 8.11.0
+
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: front
+
+    verbose: false
+
+
+- task: Npm@1
+  displayName: 'npm install @angular/cli'
+  inputs:
+    command: custom
+
+    workingDir: front
+
+    verbose: false
+
+    customCommand: 'install @angular/cli@7.0.4'
+
+
+- task: Npm@1
+  displayName: linter
+  inputs:
+    command: custom
+
+    workingDir: front
+
+    verbose: false
+
+    customCommand: 'run lint'
+
+
+- task: Npm@1
+  displayName: 'npm run test'
+  inputs:
+    command: custom
+
+    workingDir: front
+
+    verbose: false
+
+    customCommand: 'run test-headless'
+
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  inputs:
+    testResultsFiles: '**/testsResults.xml'
+
+
+- task: Npm@1
+  displayName: 'production build'
+  inputs:
+    command: custom
+
+    workingDir: front
+
+    verbose: false
+
+    customCommand: 'run build:prod'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: front/dist
+
+
+- task: DeleteFiles@1
+  displayName: 'Clean Publish Folder'
+  inputs:
+    SourceFolder: '$(build.artifactstagingdirectory)'
+
+    Contents: '**'
+
+
+- task: DeleteFiles@1
+  displayName: 'Clean build results'
+  inputs:
+    SourceFolder: front
+
+    Contents: |
+     node_modules/**
+     dist/**
+
+
+- task: CopyFiles@2
+  displayName: 'Copy e2e tests'
+  inputs:
+    SourceFolder: front
+
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: e2e tests drop'
+  inputs:
+    PathtoPublish: front
+
+    ArtifactName: e2e
+

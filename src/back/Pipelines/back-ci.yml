@@ -1,0 +1,59 @@
+resources:
+- repo: self
+queue:
+  name: ACI
+
+trigger:
+  batch: true 
+  branches:
+    include:
+    - main
+  paths:
+    include: 
+    - /src/back
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+
+    projects: '**/*.csproj'
+
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: '**/*.csproj'
+
+    arguments: '--configuration $(BuildConfiguration)'
+
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+
+    projects: '**/*.*Test.csproj'
+
+    arguments: '--configuration $(BuildConfiguration)'
+
+
+- task: DotNetCoreCLI@2
+  displayName: Dotnet Publish Api
+  inputs:
+    command: publish
+
+    projects: '**/Api.csproj'
+    publishWebProjects: False
+
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)/Api'
+
+    zipAfterPublish: True
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Api'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)/Api'
+
+    ArtifactName: dropApi
