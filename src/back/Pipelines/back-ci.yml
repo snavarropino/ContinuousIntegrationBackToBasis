@@ -12,7 +12,10 @@ trigger:
   paths:
     include: 
     - /src/back
-
+pr:
+  branches:
+    exclude:
+    - '*'  # must quote since "*" is a YAML reserved character; we want a string
 steps:
 - task: DotNetCoreCLI@2
   displayName: Restore

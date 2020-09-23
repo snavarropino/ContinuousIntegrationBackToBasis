@@ -12,7 +12,10 @@ trigger:
   paths:
     include:
     - /src/front
-
+pr:
+  branches:
+    exclude:
+    - '*'  # must quote since "*" is a YAML reserved character; we want a string
 steps:
 - task: NodeTool@0
   displayName: 'Use Node 8.11.0'
