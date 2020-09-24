@@ -13,5 +13,6 @@ namespace Api.Repositories
         Task SaveAsync();
         void Delete(Hero hero);
         Task AddAsync(Hero hero);
+        Task<IEnumerable<Hero>> FilterByNameAsync(string name);
     }
 }
