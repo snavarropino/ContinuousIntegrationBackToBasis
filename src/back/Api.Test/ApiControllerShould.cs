@@ -52,6 +52,18 @@ namespace Api.Test
         }
 
         [Fact]
+        public async Task filter_heroes()
+        {
+            var repository = Substitute.For<IHeroesRepository>();
+            repository.FilterByNameAsync("Thor").Returns(TestData.AllHeroes().Where(h=> h.Name== "Thor"));
+
+            var heroesController = new HeroesController(repository);
+            var result = await heroesController.Filter("Thor");
+
+            ((result.Result as OkObjectResult).Value as IEnumerable<Hero>).First().Name.Should().Be("Thor");
+        }
+
+        [Fact]
         public async Task return_status_ok_getting_one_hero()
         {
             var hero = TestData.AllHeroes().First();

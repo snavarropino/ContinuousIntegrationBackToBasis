@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Api.Infrastructure;
 using Api.Model;
@@ -19,6 +20,11 @@ namespace Api.Repositories
         public async Task<IEnumerable<Hero>> GetAllAsync()
         {
             return await _context.Heroes.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Hero>> FilterByNameAsync(string name)
+        {
+            return await _context.Heroes.Where(h=> EF.Functions.Like(h.Name,$"_{name}_")).ToListAsync();
         }
 
         public async Task<Hero> GetByIdAsync(Guid id)

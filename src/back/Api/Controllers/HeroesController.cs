@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Api.Model;
 using Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
@@ -23,6 +25,15 @@ namespace Api.Controllers
         public async Task<ActionResult<IEnumerable<Hero>>> Get()
         {
             var heroes = await _heroesRepository.GetAllAsync();
+            return Ok(heroes);
+        }
+
+        // GET api/heroes
+        [HttpGet(nameof(Filter))]
+        public async Task<ActionResult<IEnumerable<Hero>>> Filter(string name)
+        {
+            var heroes = await _heroesRepository.FilterByNameAsync(name);
+                
             return Ok(heroes);
         }
 
