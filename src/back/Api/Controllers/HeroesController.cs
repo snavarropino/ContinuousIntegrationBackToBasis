@@ -32,9 +32,7 @@ namespace Api.Controllers
         [HttpGet(nameof(Filter))]
         public async Task<ActionResult<IEnumerable<Hero>>> Filter(string name)
         {
-            var heroes = await _heroesRepository.FilterByNameAsync(name);
-                
-            return Ok(heroes);
+            return Ok(await _heroesRepository.FilterByNameAsync(name));
         }
 
         // GET api/heroes/5
