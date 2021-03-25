@@ -24,7 +24,17 @@ namespace Api.Repositories
 
         public async Task<IEnumerable<Hero>> FilterByNameAsync(string name)
         {
-            return await _context.Heroes.Where(h=> EF.Functions.Like(h.Name,$"_{name}_")).ToListAsync();
+            return await _context
+                                .Heroes
+                                .Where(h=> EF.Functions.Like(h.Name,$"_{name}_"))
+                                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Hero>> OtherFilterByNameAsync(string name)
+        {
+            return await _context
+                                .Heroes.FromSqlRaw($"Select * from Heroes where name like '%{name}%'")
+                                .ToListAsync();
         }
 
         public async Task<Hero> GetByIdAsync(Guid id)
