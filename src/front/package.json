@@ -76,7 +76,7 @@
     "fs": "0.0.1-security",
     "hammerjs": "2.0.8",
     "html2canvas": "1.0.0-alpha.12",
-    "http-server": "0.11.1",
+    "http-server": "0.11.2",
     "jasmine-core": "3.3.0",
     "jasmine-reporters": "^2.3.2",
     "jasmine-spec-reporter": "4.2.1",
