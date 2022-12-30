@@ -60,7 +60,7 @@
     "@angular/material": "7.0.2",
     "@angular/platform-server": "7.0.2",
     "@angular/service-worker": "7.0.2",
-    "@biesbjerg/ngx-translate-extract": "2.3.4",
+    "@biesbjerg/ngx-translate-extract": "7.0.4",
     "@ismaestro/ngx-example-library": "1.0.0",
     "@ngx-translate/core": "11.0.0",
     "@ngx-translate/http-loader": "4.0.0",
